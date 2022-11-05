@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "../node_modules/.bin/eslint .",
+    "start": "../node_modules/.bin/ts-node src/Server.ts",
+    "watch": "nodemon --watch \"src/**\" --ext \"ts\" --exec \"ts-node src/Server.ts\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/body-parser": "^1.19.2",
+    "@types/compression": "^1.7.2",
+    "@types/express": "^4.17.13",
+    "@types/ws": "^8.5.3",
+    "body-parser": "^1.19.2",
+    "compression": "^1.7.4",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "serve-static": "^1.15.0",
+    "ws": "^8.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "building-lightning-invoices",
+  "version": "1.0.0",
+  "description": "Lighting application that uses invoices",
+  "scripts": {
+    "postinstall": "concurrently \"npm run install:client\" \"npm run install:server\" \"npm run install:style\"",
+    "install:client": "cd client; npm install",
+    "install:server": "cd server; npm install",
+    "install:style": "cd style; npm install",
+    "build": "concurrently \"npm run build:client\" \"npm run build:style\"",
+    "build:client": "cd client; npm run build",
+    "build:style": "cd style; npm run build",
+    "watch": "concurrently \"npm run watch:client\" \"npm run watch:server\" \"npm run watch:style\"",
+    "watch:client": "cd client; npm run watch",
+    "watch:server": "cd server; npm run watch",
+    "watch:style": "cd style; npm run watch",
+    "test:server": "cd server; node_modules/.bin/mocha --require ts-node/register --recursive \"__tests__/**/*.spec.ts\"",
+    "script:create-invoice": "cd server; ts-node scripts/CreateInvoiceScript.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmancini55/building-lightning-invoices.git"
+  },
+  "keywords": [],
+  "author": "Brian Mancini <bmancini@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bmancini55/building-lightning-invoices/issues"
+  },
+  "homepage": "https://github.com/bmancini55/building-lightning-invoices#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.16.0",
+    "@typescript-eslint/parser": "^5.16.0",
+    "concurrently": "^7.1.0",
+    "eslint": "^8.12.0",
+    "npm": "^8.6.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.6.1",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "@types/node": "^17.0.23"
+  }
+}

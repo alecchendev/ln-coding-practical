@@ -51,6 +51,13 @@ export class LndInvoiceDataMapper implements IInvoiceDataMapper {
      * @returns
      */
     public convertInvoice(invoice: Lnd.Invoice): Invoice {
-        throw new Error("Not Implemented");
+        return new Invoice(
+            invoice.memo,
+            invoice.r_preimage.toString('hex'),
+            invoice.r_hash.toString('hex'),
+            invoice.value.toString(),
+            invoice.settled,
+            parseInt(invoice.settle_date)
+        );
     }
 }

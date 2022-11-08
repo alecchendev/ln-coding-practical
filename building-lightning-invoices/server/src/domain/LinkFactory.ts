@@ -11,7 +11,9 @@ export class LinkFactory {
      * @returns
      */
     public async createFromSeed(seed: string, startSats: number): Promise<Link> {
-        throw new Error("Exercise");
+        // Sign seed value
+        const signature = await this.signer.sign(seed);
+        return new Link(seed, signature, startSats);
     }
 
     /**
@@ -25,6 +27,8 @@ export class LinkFactory {
      * @returns
      */
     public async createFromSettled(settled: Link): Promise<Link> {
-        throw new Error("Exercise");
+        const signature = await this.signer.sign(settled.nextLinkId);
+        const minSats = parseInt(settled.invoice.valueSat) + 1;
+        return new Link(settled.invoice.preimage, signature, minSats);
     }
 }

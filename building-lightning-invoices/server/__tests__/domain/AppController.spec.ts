@@ -40,6 +40,10 @@ describe("AppController", () => {
                 minSats,
                 "expect minSats to be called with the provided argument",
             );
+            expect(sut.chainTip).to.equal(
+                fakeLink,
+                "expect chainTip to equal first link",
+            );
         });
 
         it("syncs the invoice database", async () => {

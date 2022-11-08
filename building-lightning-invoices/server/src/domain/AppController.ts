@@ -29,6 +29,7 @@ export class AppController {
      */
     public async start(seed: string, startSats: number) {
         const firstLink = await this.linkFactory.createFromSeed(seed, startSats);
+        this.chain.push(firstLink);
         await this.invoiceDataMapper.sync(invoice => this.handleInvoice(invoice))
     }
 

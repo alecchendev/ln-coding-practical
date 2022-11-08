@@ -13,7 +13,7 @@ export class Invoice {
      * @returns
      */
     public static createMemo(linkId: string, buyer: string) {
-        throw new Error("Exercise");
+        return `buy_${linkId}_${buyer}`;
     }
 
     /**
@@ -24,7 +24,8 @@ export class Invoice {
      * @returns
      */
     public static createPreimage(local: string, remote: string, sats: number): Buffer {
-        throw new Error("Exercise");
+        const x = Buffer.concat([Buffer.from(local + remote, "utf-8"), Buffer.from(sats.toString(), "utf-8")]);
+        return sha256(x);
     }
 
     constructor(

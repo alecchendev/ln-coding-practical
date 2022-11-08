@@ -28,7 +28,8 @@ export class AppController {
      * @param startSats
      */
     public async start(seed: string, startSats: number) {
-        throw new Error("Exercise");
+        const firstLink = await this.linkFactory.createFromSeed(seed, startSats);
+        await this.invoiceDataMapper.sync(invoice => this.handleInvoice(invoice))
     }
 
     /**
@@ -38,9 +39,11 @@ export class AppController {
      */
     public async handleInvoice(invoice: Invoice) {
         if (invoice.settles(this.chainTip)) {
-            throw new Error("Exercise");
-            let settled;
-            let nextLink;
+            this.chainTip.settle(invoice);
+
+            const settled = this.chainTip;
+            const nextLink = await this.linkFactory.createFromSettled(settled);
+            this.chain.push(nextLink);
 
             // send to
             if (this.listener) {
@@ -67,9 +70,8 @@ export class AppController {
         }
 
         // create information about the invoice
-        let preimage;
-        let memo;
-        throw new Error("Exercise");
+        const preimage = Invoice.createPreimage(this.chainTip.localSignature, remoteSignature, sats);
+        const memo = Invoice.createMemo(this.chainTip.linkId, verification.pubkey);
 
         // try to create the invoice
         try {
